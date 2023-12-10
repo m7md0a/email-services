@@ -39,8 +39,10 @@ function page() {
                 setError(null)
                 router.push(`/auth/login?email=${res.data.address}&pass=${password}`)
         } catch (error:any) {
-            console.log(error.response);
-            setError(error)
+            if (error.message === "Request failed with status code 422") {
+                setError(error.response.data.detail)
+            }
+            else console.log(error);
         }
     }
 
@@ -52,7 +54,13 @@ function page() {
 
     const handelRegister = (e :React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        createUser(address, password);
+        if(address && address.split('@')[0].length >= 6) {
+            if(password && password.length >= 6) {
+                createUser(address, password);
+            }
+            else setError('Password is less than 6 characters')
+        }
+        else setError('Email is less than 6 characters')
     }
 
     useEffect(() => {        
