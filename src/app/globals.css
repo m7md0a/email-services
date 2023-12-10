@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.avatar.online:before {
+    top: auto !important;
+    right: auto !important;
+    bottom: 7% !important;
+    @apply bg-primary
+}
+
+.message a {
+    @apply link link-primary
+}
