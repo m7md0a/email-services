@@ -7,7 +7,6 @@ import ContainerApp from '@/components/customize/ContainerApp';
 import IsNotUser from '@/components/gard-route/IsNotUser';
 import { IMessageResult } from '@/types';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react'
 
 type Props = { 
@@ -18,13 +17,6 @@ type Props = {
 
 function page({ params }:  Props) {
     const {id} = params;
-
-    const router = useRouter();
-    if (router.isFallback) {
-        <h1>Data is loading</h1>;
-    }
-
-
     const [msg, setMsg] = useState<IMessageResult>()
     const [error, setError] = useState<string|null>();
 
